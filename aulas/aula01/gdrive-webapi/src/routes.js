@@ -34,6 +34,7 @@ export default class Routes {
   async get(request, response){
     const files = await this.fileHelper.getFileStatus(this.downloadsFolder)
     response.writeHead(200)
+    console.log('__dirname:', __dirname)
     response.end(JSON.stringify(files))
   }
 

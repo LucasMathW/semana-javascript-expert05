@@ -15,7 +15,7 @@ export default class FileHelper {
     const fileStatuses = []
     for(const indexFile in currentFiles){
       const {birthtime, size} = statuses[indexFile]
-      fileStatuses.push({ 
+      fileStatuses.push({
         size: prettyBytes(size),
         file: currentFiles[indexFile],
         lastModified: birthtime,
