@@ -20,9 +20,7 @@ export default class AppController {
     await this.updateCurrentFiles()
   }
 
-  async onProgress({ alreadyProcess, filename }){
-    console.log({alreadyProcess, filename})
-    
+  async onProgress({ alreadyProcess, filename }){    
     const file = this.upoadingFiles.get(filename)
     const processedAlready = Math.ceil(alreadyProcess / file.size * 100)
     this.updateProgress(file, processedAlready)
