@@ -39,7 +39,7 @@ export default class Routes {
       downloadsFolder: this.downloadsFolder
     })
 
-    const onfinish = (response) => () => {  
+    const onfinish = (response) => () => {
       response.writeHead(200)
       const data = JSON.stringify({result: 'uploads files with succes!'})
       response.end(data)

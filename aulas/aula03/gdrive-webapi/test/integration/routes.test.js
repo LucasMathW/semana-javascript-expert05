@@ -15,7 +15,6 @@ describe('#Routes test suite', ()=>{
   })
 
   afterAll(async ()=> {
-    console.log('defaultDownloadsFolder', defaultDownloadsFolder)
     await fs.promises.rm(defaultDownloadsFolder, {recursive: true})
   })
 
@@ -32,10 +31,9 @@ describe('#Routes test suite', ()=>{
     }
 
     test('shoud upload file to the folder', async ()=>{
-        
         const filename = 'basicLinuxComands.jpg'
         const fileStream = fs.createReadStream(`./test/integration/mocks/${filename}`)
-        const response = TestUtil.generateWritebleStream(() => { })
+        const response = TestUtil.generateWritebleStream(() => {})
 
         const form = new FormData()
         form.append('photo', fileStream)
