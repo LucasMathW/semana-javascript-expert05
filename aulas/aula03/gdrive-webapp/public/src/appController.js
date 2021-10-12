@@ -1,7 +1,8 @@
 export default class AppController {
-  constructor({ connectionManager, viewManager}){
+  constructor({connectionManager, viewManager, dragAndDropManager}){
     this.connectionManager = connectionManager
     this.viewManager = viewManager
+    this.dragAndDropManager = dragAndDropManager
 
     this.upoadingFiles = new Map()
   }
@@ -10,8 +11,11 @@ export default class AppController {
     this.viewManager.configureFileBtnClick()
     this.viewManager.configureModal()
     this.viewManager.configureOnFileChange(this.onFileChange.bind(this))
-    
-    this.connectionManager.configureEvents({ 
+    this.dragAndDropManager.initialize({
+      onDropHandler: this.onFileChange.bind(this)
+    })
+
+    this.connectionManager.configureEvents({
       onProgress: this.onProgress.bind(this)
     })
 
@@ -42,8 +46,9 @@ export default class AppController {
   }
 
   async onFileChange(files){
+      this.upoadingFiles.clear()
     this.viewManager.openModal()
-    this.viewManager.updateStatus(0)  
+    this.viewManager.updateStatus(0)
 
     const requests = []
     for(const file of files){
